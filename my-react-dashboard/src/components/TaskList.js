@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; // useState hook from React. This hook is fundamental for adding state management to functional components in React.
 
-function taskList() {
+function TaskList() {
     const [tasks, setTasks] = useState([]); //new tasks state variable, setTasks to change value
     const [newTask, setNewTask] = useState(''); //to track the input field
 
