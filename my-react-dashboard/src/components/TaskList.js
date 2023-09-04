@@ -27,7 +27,15 @@ function taskList() {
                 <button onClick={addTask}>Add</button>
             </div>
 
-            {/* We'll display tasks here soon */}
+            {/* Displaying tasks here */}
+            <ul>
+                {tasks.map((task, index) => (
+                    <li key={index}>
+                        {task} 
+                        {/* We can also add options to delete tasks here in future */}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
