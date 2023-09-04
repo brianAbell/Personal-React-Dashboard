@@ -1,8 +1,23 @@
-import { useState } from 'react'; // useState hook from React. This hook is fundamental for adding state management to functional components in React.
+import { useState, useEffect } from 'react'; // useState hook from React. This hook is fundamental for adding state management to functional components in React.
 
 function taskList() {
     const [tasks, setTasks] = useState([]); //new tasks state variable, setTasks to change value
     const [newTask, setNewTask] = useState(''); //to track the input field
+
+    /* USE EFFECT PORTION ----- */
+    //load tasks from localStorage on component mount
+    useEffect(() => {
+        const savedTasks = localStorage.getItem('tasks');
+        if(savedTasks) {
+            setTasks(JSON.parse(savedTasks));
+        }
+     }, []);
+
+     // Save tasks to localStorage whenever they change
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+     }, [tasks]);
+     /* ----------------------- */
 
     //adds the value of newTask to the tasks array when a task is added:
     const addTask = () => {
@@ -20,7 +35,7 @@ function taskList() {
             <div>
                 <input
                     type = "text"
-                    value={newTask.name}
+                    value={newTask}
                     onChange={e => setNewTask(e.target.value)}
                     placeholder="New task..." 
                 />
@@ -39,3 +54,5 @@ function taskList() {
         </div>
     );
 }
+
+export default TaskList;  // To allow importing elsewhere
